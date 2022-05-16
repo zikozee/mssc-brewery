@@ -41,13 +41,13 @@ public class CustomerController {
         return new ResponseEntity(httpHeaders, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "{customerId")
+    @PutMapping(path = "{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handlePut(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDto customerDto){
         customerService.updateCustomer(customerId, customerDto);
     }
 
-    @DeleteMapping(path = "{customerId")
+    @DeleteMapping(path = "{customerId}")
     public void handleDelete(@PathVariable("customerId") UUID customerId){
         customerService.deleteById(customerId);
     }

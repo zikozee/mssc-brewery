@@ -3,6 +3,7 @@ package com.zikozee.msscbrewery.web.controller.v2;
 import com.zikozee.msscbrewery.services.BeerServiceV2;
 import com.zikozee.msscbrewery.web.model.v2.BeerDtoV2;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +37,9 @@ public class BeerControllerV2 {
 
     @PostMapping
     public ResponseEntity<HttpHeaders> handlePost(@Valid @RequestBody BeerDtoV2 beerDto){
-        BeerDtoV2 savedDto = beerService.saveNewBeer(beerDto);
+        val savedDto = beerService.saveNewBeer(beerDto);
 
-        HttpHeaders headers = new HttpHeaders();
+        val headers = new HttpHeaders();
         headers.add("Location", "/api/v2/beer/" + savedDto.getId().toString());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
@@ -46,7 +47,7 @@ public class BeerControllerV2 {
 
     @PutMapping(path = "{beerId}")
     public ResponseEntity<HttpHeaders> handleUpdate(@PathVariable(value = "beerId") UUID beerId, @Valid @RequestBody BeerDtoV2 beerDto){
-        BeerDtoV2 savedDto = beerService.updateBeer(beerId, beerDto);
+        val savedDto = beerService.updateBeer(beerId, beerDto);
 
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT );
